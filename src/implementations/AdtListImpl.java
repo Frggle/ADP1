@@ -4,77 +4,110 @@ import interfaces.AdtList;
 
 /**
  * 
- * @author Marc
+ * @author Marc & Constantin
  *
  */
-public class AdtListImpl implements AdtList {
+public class AdtListImpl implements AdtList
+{
 
-	protected int _list[]; // protected statt private ggf. für Vererbung
-//	protected List<Integer> _list;
-	
-	/**
-	 * privater Konstruktor
-	 */
-	private AdtListImpl() {
-		_list = new int[0];
-//		_list = new ArrayList<Integer>();
-	}
-	
-	/**
-	 * Initialisiert das Objekt
-	 * @return
-	 */
-	public static AdtList create() {
-		return new AdtListImpl();
-	}
+    public int[] _array; 
+    
+    private int _laenge;
+    
+    /**
+     * privater Konstruktor
+     */
+    private AdtListImpl()
+    {
+        _array = new int[100];
+        _laenge = 0;
+    }
 
-	
-	// TODO
-	//	Warum wird das referenzierte Objekt im Parameter mit übergeben? -> Methode wird doch am referenzierten Objekt aufgerufen
-	//	Muss intern ein Array (new int[]) benutzt werden oder ist ArrayList erlaubt?
-	// Ende TODO
-	
-	@Override
-	public boolean isEmpty(AdtList list) {
-		if(list.laenge(list) == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+    /**
+     * Initialisiert das Objekt
+     * 
+     * @return
+     */
+    public static AdtList create()
+    {
+        return new AdtListImpl();
+    }
 
-	@Override
-	public int laenge(AdtList list) {
-		return _list.length;
-	}
+    @Override
+    public boolean isEmpty(AdtList list)
+    {
+        return (_laenge == 0 ? true : false);
+    }
 
-	@Override
-	public void insert(AdtList list, int pos, int elem) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public int laenge(AdtList list)
+    {
+        return _laenge;
+    }
 
-	@Override
-	public void delete(AdtList list, int pos) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void insert(AdtList list, int pos, int elem)
+    {
+        if (pos <= list.laenge(list) + 1)
+        {
+            // pruefen, ob max. Groesse von Array erreicht -> wenn ja
+            // vergroessern und kopieren
+            if (list.laenge(list) == _array.length)
+            {
+                int[] _tmpArray = _array;
+                _array = new int[_array.length + 100];
+                for (int i = 0; i <= _tmpArray.length; i++)
+                {
+                    _array[i] = _tmpArray[i];
+                }
+            }
+            _array[list.laenge(list)] = elem;
+            _laenge++;
+        }
+    }
+    
+    @Override
+    public void delete(AdtList list, int pos)
+    {
+        if (pos <= list.laenge(list))
+        {
+            for (int i = pos - 1; i <= list.laenge(list); i++)
+            {
+                _array[i] = _array[i + 1];
+            }
+            _laenge--;
+        }
+    }
 
-	@Override
-	public int find(AdtList list, int elem) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int find(AdtList list, int elem)
+    {
+        for(int i = 0; i <= list.laenge(list); i++) 
+        {
+            if (_array[i] == elem)
+            {
+                return i + 1;
+            }
+        }
+        return -1;
+    }
 
-	@Override
-	public int retrieve(AdtList list, int pos) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public int retrieve(AdtList list, int pos)
+    {
+        if(pos > list.laenge(list) || pos <= 0) {
+            return -99999999;
+        }
+        return _array[pos - 1];
+    }
 
-	@Override
-	public AdtList concat(AdtList list1, AdtList list2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public AdtList concat(AdtList list1, AdtList list2)
+    {
+        for (int i = 0; i < list2.laenge(list2); i++)
+        {
+            this.insert(list1, i + 1, list2.retrieve(list2, i + 1));
+        }
+        return list1;
+    }
 }

@@ -1,14 +1,13 @@
 package interfaces;
 
+
 public interface AdtList {
-	
-	// TODO: unsicher bezüglich Rückgabewert/typ
 	
 	/**
 	 * 
 	 * @return
 	 */
-	static AdtList create() {
+	public static AdtList create() {
 		return null;
 	}
 	
@@ -17,14 +16,14 @@ public interface AdtList {
 	 * @param list
 	 * @return
 	 */
-	boolean isEmpty(AdtList list);
+	public boolean isEmpty(AdtList list);
 	
 	/**
 	 * 
 	 * @param list
 	 * @return
 	 */
-	int laenge(AdtList list);
+	public int laenge(AdtList list);
 	
 	/**
 	 * 
@@ -32,14 +31,14 @@ public interface AdtList {
 	 * @param pos
 	 * @param elem
 	 */
-	void insert(AdtList list, int pos, int elem);
+	public void insert(AdtList list, int pos, int elem);
 	
 	/**
 	 * 
 	 * @param list
 	 * @param pos
 	 */
-	void delete(AdtList list, int pos);
+	public void delete(AdtList list, int pos);
 	
 	/**
 	 * 
@@ -47,7 +46,7 @@ public interface AdtList {
 	 * @param elem
 	 * @return
 	 */
-	int find(AdtList list, int elem);
+	public int find(AdtList list, int elem);
 	
 	/**
 	 * 
@@ -55,7 +54,7 @@ public interface AdtList {
 	 * @param pos
 	 * @return
 	 */
-	int retrieve(AdtList list, int pos);
+	public int retrieve(AdtList list, int pos);
 	
 	/**
 	 * 
@@ -63,5 +62,5 @@ public interface AdtList {
 	 * @param list2
 	 * @return
 	 */
-	AdtList concat(AdtList list1, AdtList list2);
+	public AdtList concat(AdtList list1, AdtList list2);
 }
