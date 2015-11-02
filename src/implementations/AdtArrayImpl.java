@@ -9,7 +9,7 @@ public class AdtArrayImpl implements AdtArray
     
     private AdtArrayImpl()
     {
-        _array = AdtList.create();
+        _array = AdtListImpl.create();
     }
     
     public static AdtArray initA() {
@@ -19,18 +19,20 @@ public class AdtArrayImpl implements AdtArray
     @Override
     public void setA(AdtArray array, int pos, int elem)
     {
-        while(pos > _array.laenge(_array)) {
-            _array.insert(_array, _array.laenge(_array), 0);
+        if(pos >= 0) {
+            while(pos > _array.laenge(_array)) {
+                _array.insert(_array, _array.laenge(_array), 0);
+            }
+            _array.delete(_array, pos + 1);
+            _array.insert(_array, pos, elem);
         }
-        _array.delete(_array, pos + 1);
-        _array.insert(_array, pos, elem);
     }
 
     @Override
     public int getA(AdtArray array, int pos)
     {
         if(!(pos < 0 && pos >= _array.laenge(_array))) {
-            return _array.retrieve(_array, pos - 1); 
+            return _array.retrieve(_array, pos + 1); 
         }
         return Integer.MIN_VALUE; // TODO ?
     }
@@ -38,6 +40,6 @@ public class AdtArrayImpl implements AdtArray
     @Override
     public int lengthA(AdtArray array)
     {
-       return _array.laenge(_array) - 1;
+       return _array.laenge(_array);
     }
 }

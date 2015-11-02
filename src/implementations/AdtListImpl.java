@@ -1,5 +1,7 @@
 package implementations;
 
+import java.util.Arrays;
+
 import interfaces.AdtList;
 
 /**
@@ -10,7 +12,7 @@ import interfaces.AdtList;
 public class AdtListImpl implements AdtList
 {
 
-    public int[] _array; 
+    private int[] _array; 
     
     private int _laenge;
     
@@ -109,5 +111,32 @@ public class AdtListImpl implements AdtList
             this.insert(list1, i + 1, list2.retrieve(list2, i + 1));
         }
         return list1;
+    }
+
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + Arrays.hashCode(_array);
+        result = prime * result + _laenge;
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AdtListImpl other = (AdtListImpl) obj;
+        if (!Arrays.equals(_array, other._array))
+            return false;
+        if (_laenge != other._laenge)
+            return false;
+        return true;
     }
 }
