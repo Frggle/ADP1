@@ -16,6 +16,9 @@ public class AdtArrayTest
         _array = AdtArrayImpl.initA();
     }
     
+    /**
+     * Testet ob die Laenge vor dem Einfuegen 0 ist und danach 1
+     */
     @Test
     public void testLenghtTrue() {
         assertEquals(0, _array.lengthA(_array));
@@ -23,16 +26,21 @@ public class AdtArrayTest
         assertEquals(1, _array.lengthA(_array));
     }
         
+    /**
+     * Fuegt ein Element an Pos = 0 ein und prueft dann ob das Element wirklich eingefuegt war
+     */
     @Test
     public void testSetATrue()
     {
         _array.setA(_array, 0, 10);
-        _array.lengthA(_array);
         assertEquals(1, _array.lengthA(_array));
         int elem = _array.getA(_array, 0);
         assertEquals(10, elem);
     }
     
+    /**
+     * Testet ob eine ungueltige Pos (-1) das Array veraendert
+     */
     @Test
     public void testSetATrue2()
     {
@@ -42,6 +50,10 @@ public class AdtArrayTest
         assertEquals(_tmpArray, _array);
     }
     
+    /**
+     * Fuegt ein Element an 0-ter Position hinzu und dann ein 2.tes Elemet an 2-ter Position
+     * und prueft dann ob das Element an Position 1 mit 0 initialisiert wurde
+     */
     @Test
     public void testSetATrue3()
     {
@@ -53,5 +65,29 @@ public class AdtArrayTest
         int elem = _array.getA(_array, 1);
         assertEquals(0, elem);
     }
-
+    
+    /**
+     * Fuegt ein Element an 0-ter Position hinzu und dann ein 2.tes Elemet an 2-ter Position
+     * und prueft dann ob das Element an Position 1 mit 0 initialisiert wurde
+     */
+    @Test 
+    public void testGetATrue() {
+    	 assertEquals(0, _array.lengthA(_array));
+         _array.setA(_array, 0, 10);
+         assertEquals(1, _array.lengthA(_array));
+         _array.setA(_array, 2, 10);
+         assertEquals(3, _array.lengthA(_array));
+         int elem = _array.getA(_array, 1);
+         assertEquals(0, elem);
+    }
+    
+    /**
+     * Testet ob ein leeres Array an Position -1 einen Fehler wirft
+     */
+    @Test
+    public void testGetANegative() {
+    	assertEquals(0, _array.lengthA(_array));
+    	int elem = _array.getA(_array, -1);
+    	assertEquals(-99999999, elem);
+    }
 }

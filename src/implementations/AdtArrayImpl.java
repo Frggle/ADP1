@@ -31,10 +31,11 @@ public class AdtArrayImpl implements AdtArray
     @Override
     public int getA(AdtArray array, int pos)
     {
-        if(!(pos < 0 && pos >= _array.laenge(_array))) {
+        if(pos >= 0 && pos <= _array.laenge(_array)) {
             return _array.retrieve(_array, pos + 1); 
         }
-        return Integer.MIN_VALUE; // TODO ?
+        System.err.println("BLA");
+        return -99999999;
     }
 
     @Override
