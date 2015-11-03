@@ -42,6 +42,20 @@ public class AdtListTest {
 	    assertEquals(10, _list.retrieve(_list, 1));
 	}
 	
+	/**
+	 * 
+	 */
+	@Test
+	public void testInsertTrue100() {
+	    assertTrue(_list.isEmpty(_list));
+	    for(int i = 1; i <= 100; i++) {
+	        _list.insert(_list, i, i);
+	        assertEquals(i, _list.laenge(_list));
+	    }
+	    _list.insert(_list, _list.laenge(_list) + 1, 5000);
+	    assertEquals(101, _list.laenge(_list));
+	}
+	
 	@Test
     public void testInsertNegative() {
         assertTrue(_list.isEmpty(_list));

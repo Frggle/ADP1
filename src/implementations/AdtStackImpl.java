@@ -9,7 +9,7 @@ public class AdtStackImpl implements AdtStack
     
     private AdtStackImpl()
     {
-        _stack = AdtList.create();
+        _stack = AdtListImpl.create();
     }
     
     public static AdtStack createS() {
@@ -44,5 +44,32 @@ public class AdtStackImpl implements AdtStack
     {
         return _stack.isEmpty(_stack);
     }
+    
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((_stack == null) ? 0 : _stack.hashCode());
+        return result;
+    }
 
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AdtStackImpl other = (AdtStackImpl) obj;
+        if (_stack == null)
+        {
+            if (other._stack != null)
+                return false;
+        } else if (!_stack.equals(other._stack))
+            return false;
+        return true;
+    }
 }

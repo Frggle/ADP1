@@ -11,8 +11,8 @@ public class AdtQueueImpl implements AdtQueue
 
     
     private AdtQueueImpl() {
-        _queueIn = AdtStack.createS();
-        _queueOut = AdtStack.createS();
+        _queueIn = AdtStackImpl.createS();
+        _queueOut = AdtStackImpl.createS();
     }
     
     public static AdtQueue createQ() {
@@ -32,10 +32,11 @@ public class AdtQueueImpl implements AdtQueue
            
             if(_queueOut.isEmptyS(_queueOut)) {
                 // Umschachteln, von In nach Out -> unterstes In danach oberste Out
-                do{
-                    int elem = _queueIn.top(_queueIn);
-                    _queueOut.push(_queueOut, elem);
-                } while(!_queueIn.isEmptyS(_queueIn));
+                while(!_queueIn.isEmptyS(_queueIn)) {
+                    int elem = _queueIn.top(_queueIn);  // holt das unterste Element (ohne es zu entfernen)
+                    _queueIn.pop(_queueIn);             // entfernt anschlieﬂend das Element
+                    _queueOut.push(_queueOut, elem);    // fuegt es der QueueOut hinzu
+                }                
             }
            _queueOut.pop(_queueOut);
         }
@@ -48,19 +49,57 @@ public class AdtQueueImpl implements AdtQueue
             
             if(_queueOut.isEmptyS(_queueOut)) {
                 // Umschachteln, von In nach Out -> unterstes In danach oberste Out
-                do{
-                    int elem = _queueIn.top(_queueIn);
-                    _queueOut.push(_queueOut, elem);
-                } while(!_queueIn.isEmptyS(_queueIn));
+                while(!_queueIn.isEmptyS(_queueIn)) {
+                    int elem = _queueIn.top(_queueIn);  // holt das unterste Element (ohne es zu entfernen)
+                    _queueIn.pop(_queueIn);             // entfernt anschlieﬂend das Element
+                    _queueOut.push(_queueOut, elem);    // fuegt es der QueueOut hinzu
+                }    
             }
            return _queueOut.top(_queueOut);
         }
-        return Integer.MIN_VALUE; // TODO ?
+        return -99999999;
     }
 
     @Override
     public boolean isEmptyQ(AdtQueue queue)
     {
        return _queueIn.isEmptyS(_queueIn) && _queueOut.isEmptyS(_queueOut);
+    }
+
+    @Override
+    public int hashCode()
+    {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result
+                + ((_queueIn == null) ? 0 : _queueIn.hashCode());
+        result = prime * result
+                + ((_queueOut == null) ? 0 : _queueOut.hashCode());
+        return result;
+    }
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        AdtQueueImpl other = (AdtQueueImpl) obj;
+        if (_queueIn == null)
+        {
+            if (other._queueIn != null)
+                return false;
+        } else if (!_queueIn.equals(other._queueIn))
+            return false;
+        if (_queueOut == null)
+        {
+            if (other._queueOut != null)
+                return false;
+        } else if (!_queueOut.equals(other._queueOut))
+            return false;
+        return true;
     }
 }
