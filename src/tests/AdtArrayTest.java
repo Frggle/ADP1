@@ -88,6 +88,6 @@ public class AdtArrayTest
     public void testGetANegative() {
     	assertEquals(0, _array.lengthA(_array));
     	int elem = _array.getA(_array, -1);
-    	assertEquals(-99999999, elem);
+    	assertEquals(0, elem);
     }
 }

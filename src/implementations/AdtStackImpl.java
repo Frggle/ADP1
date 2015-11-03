@@ -6,22 +6,42 @@ import interfaces.AdtStack;
 public class AdtStackImpl implements AdtStack
 {
     private AdtList _stack;
-    
+ 
+    /**
+     * privater Konstruktor
+     */
     private AdtStackImpl()
     {
         _stack = AdtListImpl.create();
     }
     
+    /**
+     * Initialisiert das Objekt
+     * 
+     * @return AdtStack
+     */
     public static AdtStack createS() {
         return new AdtStackImpl();
     }
     
+    /**
+     * Legt das Element oben auf den Stack
+     * 
+     * @param AdtStack stack -> wird ignoriert
+     * @param int elem
+     */
     @Override
     public void push(AdtStack stack, int elem)
     {
         _stack.insert(_stack, 1, elem);
     }
 
+    /**
+     * Entfernt das oberste Element vom Stack
+     * Wenn der Stack leer ist, wird nichts gemacht
+     * 
+     * @param AdtStack stack -> wird ignoriert
+     */
     @Override
     public void pop(AdtStack stack)
     {
@@ -30,6 +50,12 @@ public class AdtStackImpl implements AdtStack
         }
     }
 
+    /**
+     * Liefert das oberste Element vom Stack
+     * 
+     * @param AdtStack stack -> wird ignoriert
+     * @return int, das Element
+     */
     @Override
     public int top(AdtStack stack)
     {
@@ -39,6 +65,12 @@ public class AdtStackImpl implements AdtStack
         return _stack.retrieve(_stack, 0);
     }
 
+    /**
+     * Prueft ob der Stack leer ist
+     * 
+     * @param AdtStack stack -> wird ignoriert
+     * @return boolean, ob Stack leer
+     */
     @Override
     public boolean isEmptyS(AdtStack stack)
     {

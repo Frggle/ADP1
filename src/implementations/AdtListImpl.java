@@ -18,6 +18,8 @@ public class AdtListImpl implements AdtList
     
     /**
      * privater Konstruktor
+     * Initialisiert das Array mit der Groesse 100 und die Laenge mit 0
+     * 
      */
     private AdtListImpl()
     {
@@ -28,25 +30,45 @@ public class AdtListImpl implements AdtList
     /**
      * Initialisiert das Objekt
      * 
-     * @return
+     * @return AdtList
      */
     public static AdtList create()
     {
         return new AdtListImpl();
     }
 
+    /**
+     * Prueft ob die Laenge des aufrufenden Objektes 0 ist
+     * 
+     * @param AdtList list -> wird ignoriert
+     * @return boolean, ob Liste leer
+     */
     @Override
     public boolean isEmpty(AdtList list)
     {
         return (_laenge == 0 ? true : false);
     }
 
+    /**
+     * Gibt die Anzahl der Elemente aus der Liste zurueck
+     * 
+     * @param AdtList list -> wird ignoriert
+     * @return int, laenge der Liste
+     */
     @Override
     public int laenge(AdtList list)
     {
         return _laenge;
     }
 
+    /**
+     * Fuegt ein neues Element an einer bestimmten Position (0 < pos <= Laenge + 1) ein
+     * Wenn die Position ungueltig ist, wird das Element nicht hinzugefuegt
+     * 
+     * @param AdtList list -> wird ignoriert
+     * @param int pos
+     * @param int elem
+     */
     @Override
     public void insert(AdtList list, int pos, int elem)
     {
@@ -65,6 +87,13 @@ public class AdtListImpl implements AdtList
         }
     }
     
+    /**
+     * Entfernt das Element an einer bestimmten Postion
+     * Wenn die Position ungueltig ist, wird das Element nicht entfernt
+     * 
+     * @param AdtList list -> wird ignoriert
+     * @param int pos
+     */
     @Override
     public void delete(AdtList list, int pos)
     {
@@ -78,6 +107,14 @@ public class AdtListImpl implements AdtList
         }
     }
 
+    /**
+     * Liefert die Position des ersten Vorkommens des Elements
+     * Wenn das Element nicht enthalten ist, wird -1 als Fehler zurueckgegeben
+     * 
+     * @param AdtList list -> wird ignoriert
+     * @param int elem
+     * @return int, Position des Elements
+     */
     @Override
     public int find(AdtList list, int elem)
     {
@@ -91,6 +128,14 @@ public class AdtListImpl implements AdtList
         return -1;
     }
 
+    /**
+     * Liefert das Element an der gegebenen Position (1..Laenge)
+     * Wenn die Position ungueltig ist, wird -99999999 zurueckgegeben
+     * 
+     * @param AdtList list -> wird ignoriert
+     * @param int pos
+     * @return int, das Element
+     */
     @Override
     public int retrieve(AdtList list, int pos)
     {
@@ -100,6 +145,13 @@ public class AdtListImpl implements AdtList
         return _array[pos - 1];
     }
 
+    /**
+     * Konkateniert die aufrufende Liste mit der 2. Parameter-Liste
+     * 
+     * @param AdtList list1 -> wird ignoriert
+     * @param AdtList list2
+     * @return AdtList, die erste Liste
+     */
     @Override
     public AdtList concat(AdtList list1, AdtList list2)
     {

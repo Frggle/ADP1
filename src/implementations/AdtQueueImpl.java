@@ -6,25 +6,46 @@ import interfaces.AdtStack;
 public class AdtQueueImpl implements AdtQueue
 {
 
+    /**
+     * Interne Architektur wird mit 2 Stacks repraesentiert
+     */
     private AdtStack _queueIn;
     private AdtStack _queueOut;
 
-    
+    /**
+     * privater Konstruktor
+     */
     private AdtQueueImpl() {
         _queueIn = AdtStackImpl.createS();
         _queueOut = AdtStackImpl.createS();
     }
     
+    /**
+     * Initialisiert das Objekt
+     * 
+     * @return AdtQueue
+     */
     public static AdtQueue createQ() {
         return new AdtQueueImpl();
     }
     
+    /**
+     * Fuegt das Element der Queue hinzu -> nach dem FIFO Prinzip
+     * 
+     * @param AdtQueue queue -> wird ignoriert
+     * @param int elem
+     */
     @Override
     public void enqueue(AdtQueue queue, int elem)
     {
         _queueIn.push(_queueIn, elem);
     }
 
+    /**
+     * Entfernt das aelteste Element, ohne es zurueckzugeben
+     * 
+     * @param AdtQueue queue -> wird ignoriert
+     */
     @Override
     public void dequeue(AdtQueue queue)
     {
@@ -42,6 +63,13 @@ public class AdtQueueImpl implements AdtQueue
         }
     }
 
+    /**
+     * Liefert das aelteste Element, ohne es zu entfernen
+     * Wenn die Queue leer ist, wird -99999999 als Fehler zurueckgegeben
+     * 
+     * @param AdtQueue queue -> wird ignoriert
+     * @return int, das Element
+     */
     @Override
     public int front(AdtQueue queue)
     {
@@ -60,6 +88,12 @@ public class AdtQueueImpl implements AdtQueue
         return -99999999;
     }
 
+    /**
+     * Prueft ob die Queue leer ist
+     * 
+     * @param AdtQueue queue -> wird ignoriert
+     * @return boolean, ob Queue leer
+     */
     @Override
     public boolean isEmptyQ(AdtQueue queue)
     {
