@@ -32,34 +32,32 @@ public class AdtQueueImpl implements AdtQueue
     /**
      * Fuegt das Element der Queue hinzu -> nach dem FIFO Prinzip
      * 
-     * @param AdtQueue queue -> wird ignoriert
      * @param int elem
      */
     @Override
-    public void enqueue(AdtQueue queue, int elem)
+    public void enqueue(int elem)
     {
-        _queueIn.push(_queueIn, elem);
+        _queueIn.push(elem);
     }
 
     /**
      * Entfernt das aelteste Element, ohne es zurueckzugeben
      * 
-     * @param AdtQueue queue -> wird ignoriert
      */
     @Override
-    public void dequeue(AdtQueue queue)
+    public void dequeue()
     {
-        if(!(_queueIn.isEmptyS(_queueIn) && _queueOut.isEmptyS(_queueOut))) {
+        if(!(_queueIn.isEmptyS() && _queueOut.isEmptyS())) {
            
-            if(_queueOut.isEmptyS(_queueOut)) {
+            if(_queueOut.isEmptyS()) {
                 // Umschachteln, von In nach Out -> unterstes In danach oberste Out
-                while(!_queueIn.isEmptyS(_queueIn)) {
-                    int elem = _queueIn.top(_queueIn);  // holt das unterste Element (ohne es zu entfernen)
-                    _queueIn.pop(_queueIn);             // entfernt anschließend das Element
-                    _queueOut.push(_queueOut, elem);    // fuegt es der QueueOut hinzu
+                while(!_queueIn.isEmptyS()) {
+                    int elem = _queueIn.top();  // holt das unterste Element (ohne es zu entfernen)
+                    _queueIn.pop();             // entfernt anschließend das Element
+                    _queueOut.push(elem);       // fuegt es der QueueOut hinzu
                 }                
             }
-           _queueOut.pop(_queueOut);
+           _queueOut.pop();
         }
     }
 
@@ -67,23 +65,22 @@ public class AdtQueueImpl implements AdtQueue
      * Liefert das aelteste Element, ohne es zu entfernen
      * Wenn die Queue leer ist, wird -99999999 als Fehler zurueckgegeben
      * 
-     * @param AdtQueue queue -> wird ignoriert
      * @return int, das Element
      */
     @Override
-    public int front(AdtQueue queue)
+    public int front()
     {
-        if(!(_queueIn.isEmptyS(_queueIn) && _queueOut.isEmptyS(_queueOut))) {
+        if(!(_queueIn.isEmptyS() && _queueOut.isEmptyS())) {
             
-            if(_queueOut.isEmptyS(_queueOut)) {
+            if(_queueOut.isEmptyS()) {
                 // Umschachteln, von In nach Out -> unterstes In danach oberste Out
-                while(!_queueIn.isEmptyS(_queueIn)) {
-                    int elem = _queueIn.top(_queueIn);  // holt das unterste Element (ohne es zu entfernen)
-                    _queueIn.pop(_queueIn);             // entfernt anschließend das Element
-                    _queueOut.push(_queueOut, elem);    // fuegt es der QueueOut hinzu
+                while(!_queueIn.isEmptyS()) {
+                    int elem = _queueIn.top();  // holt das unterste Element (ohne es zu entfernen)
+                    _queueIn.pop();             // entfernt anschließend das Element
+                    _queueOut.push(elem);    // fuegt es der QueueOut hinzu
                 }    
             }
-           return _queueOut.top(_queueOut);
+           return _queueOut.top();
         }
         return -99999999;
     }
@@ -91,13 +88,12 @@ public class AdtQueueImpl implements AdtQueue
     /**
      * Prueft ob die Queue leer ist
      * 
-     * @param AdtQueue queue -> wird ignoriert
      * @return boolean, ob Queue leer
      */
     @Override
-    public boolean isEmptyQ(AdtQueue queue)
+    public boolean isEmptyQ()
     {
-       return _queueIn.isEmptyS(_queueIn) && _queueOut.isEmptyS(_queueOut);
+       return _queueIn.isEmptyS() && _queueOut.isEmptyS();
     }
 
     @Override

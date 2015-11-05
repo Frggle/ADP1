@@ -21,9 +21,9 @@ public class AdtArrayTest
      */
     @Test
     public void testLenghtTrue() {
-        assertEquals(0, _array.lengthA(_array));
-        _array.setA(_array, 0, 10);
-        assertEquals(1, _array.lengthA(_array));
+        assertEquals(0, _array.lengthA());
+        _array.setA(0, 10);
+        assertEquals(1, _array.lengthA());
     }
         
     /**
@@ -32,9 +32,9 @@ public class AdtArrayTest
     @Test
     public void testSetATrue()
     {
-        _array.setA(_array, 0, 10);
-        assertEquals(1, _array.lengthA(_array));
-        int elem = _array.getA(_array, 0);
+        _array.setA(0, 10);
+        assertEquals(1, _array.lengthA());
+        int elem = _array.getA(0);
         assertEquals(10, elem);
     }
     
@@ -44,9 +44,9 @@ public class AdtArrayTest
     @Test
     public void testSetATrue2()
     {
-        assertEquals(0, _array.lengthA(_array));
+        assertEquals(0, _array.lengthA());
         AdtArray _tmpArray = _array;
-        _array.setA(_array, -1, 10);
+        _array.setA(-1, 10);
         assertEquals(_tmpArray, _array);
     }
     
@@ -57,12 +57,12 @@ public class AdtArrayTest
     @Test
     public void testSetATrue3()
     {
-        assertEquals(0, _array.lengthA(_array));
-        _array.setA(_array, 0, 10);
-        assertEquals(1, _array.lengthA(_array));
-        _array.setA(_array, 2, 10);
-        assertEquals(3, _array.lengthA(_array));
-        int elem = _array.getA(_array, 1);
+        assertEquals(0, _array.lengthA());
+        _array.setA(0, 10);
+        assertEquals(1, _array.lengthA());
+        _array.setA(2, 10);
+        assertEquals(3, _array.lengthA());
+        int elem = _array.getA(1);
         assertEquals(0, elem);
     }
     
@@ -72,12 +72,12 @@ public class AdtArrayTest
      */
     @Test 
     public void testGetATrue() {
-    	 assertEquals(0, _array.lengthA(_array));
-         _array.setA(_array, 0, 10);
-         assertEquals(1, _array.lengthA(_array));
-         _array.setA(_array, 2, 10);
-         assertEquals(3, _array.lengthA(_array));
-         int elem = _array.getA(_array, 1);
+    	 assertEquals(0, _array.lengthA());
+         _array.setA(0, 10);
+         assertEquals(1, _array.lengthA());
+         _array.setA(2, 10);
+         assertEquals(3, _array.lengthA());
+         int elem = _array.getA(1);
          assertEquals(0, elem);
     }
     
@@ -86,8 +86,8 @@ public class AdtArrayTest
      */
     @Test
     public void testGetANegative() {
-    	assertEquals(0, _array.lengthA(_array));
-    	int elem = _array.getA(_array, -1);
+    	assertEquals(0, _array.lengthA());
+    	int elem = _array.getA(-1);
     	assertEquals(0, elem);
     }
 }

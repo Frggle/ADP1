@@ -22,7 +22,7 @@ public class AdtQueueTest
     @Test
     public void testIsEmptyQTrue()
     {
-        assertTrue(_queue.isEmptyQ(_queue));
+        assertTrue(_queue.isEmptyQ());
     }
     
     /**
@@ -31,8 +31,8 @@ public class AdtQueueTest
     @Test
     public void testIsEmptyQNegative()
     {
-        _queue.enqueue(_queue, 10);
-        assertFalse(_queue.isEmptyQ(_queue));
+        _queue.enqueue(10);
+        assertFalse(_queue.isEmptyQ());
     }
     
     /**
@@ -40,9 +40,9 @@ public class AdtQueueTest
      */
     @Test
     public void testEnqueueTrue() {
-        assertTrue(_queue.isEmptyQ(_queue));
-        _queue.enqueue(_queue, 10);
-        assertFalse(_queue.isEmptyQ(_queue));
+        assertTrue(_queue.isEmptyQ());
+        _queue.enqueue(10);
+        assertFalse(_queue.isEmptyQ());
     }
     
     /**
@@ -50,15 +50,15 @@ public class AdtQueueTest
      */
     @Test
     public void testDequeueTrue() {
-        assertTrue(_queue.isEmptyQ(_queue));
-        _queue.enqueue(_queue, 10);
-        _queue.enqueue(_queue, 20);
-        _queue.enqueue(_queue, 30);
+        assertTrue(_queue.isEmptyQ());
+        _queue.enqueue(10);
+        _queue.enqueue(20);
+        _queue.enqueue(30);
         
-        _queue.dequeue(_queue);
-        assertFalse(_queue.isEmptyQ(_queue));
-        _queue.dequeue(_queue);
-        int elem = _queue.front(_queue);
+        _queue.dequeue();
+        assertFalse(_queue.isEmptyQ());
+        _queue.dequeue();
+        int elem = _queue.front();
         assertEquals(30, elem);
     }
 
@@ -68,9 +68,9 @@ public class AdtQueueTest
      */
     @Test
     public void testDequeueNegative() {
-        assertTrue(_queue.isEmptyQ(_queue));
-        _queue.dequeue(_queue);
-        assertTrue(_queue.isEmptyQ(_queue));
+        assertTrue(_queue.isEmptyQ());
+        _queue.dequeue();
+        assertTrue(_queue.isEmptyQ());
     }
     
     /**
@@ -78,10 +78,10 @@ public class AdtQueueTest
      */
     @Test
     public void testFrontTrue() {
-        assertTrue(_queue.isEmptyQ(_queue));
-        _queue.enqueue(_queue, 10);
-        assertEquals(10, _queue.front(_queue));
-        assertFalse(_queue.isEmptyQ(_queue));
+        assertTrue(_queue.isEmptyQ());
+        _queue.enqueue(10);
+        assertEquals(10, _queue.front());
+        assertFalse(_queue.isEmptyQ());
     }
     
     /**
@@ -89,7 +89,7 @@ public class AdtQueueTest
      */
     @Test
     public void testFrontNegative() {
-        assertTrue(_queue.isEmptyQ(_queue));
-        assertEquals(-99999999, _queue.front(_queue));
+        assertTrue(_queue.isEmptyQ());
+        assertEquals(-99999999, _queue.front());
     }
 }

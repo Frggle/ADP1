@@ -7,17 +7,17 @@ public interface AdtList {
 		return null;
 	}
 	
-	public boolean isEmpty(AdtList list);
+	public boolean isEmpty();
 	
-	public int laenge(AdtList list);
+	public int laenge();
 	
-	public void insert(AdtList list, int pos, int elem);
+	public void insert(int pos, int elem);
 	
-	public void delete(AdtList list, int pos);
+	public void delete(int pos);
 	
-	public int find(AdtList list, int elem);
+	public int find(int elem);
 	
-	public int retrieve(AdtList list, int pos);
+	public int retrieve(int pos);
 
-	public AdtList concat(AdtList list1, AdtList list2);
+	public AdtList concat(AdtList list);
 }

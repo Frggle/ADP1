@@ -27,54 +27,50 @@ public class AdtStackImpl implements AdtStack
     /**
      * Legt das Element oben auf den Stack
      * 
-     * @param AdtStack stack -> wird ignoriert
      * @param int elem
      */
     @Override
-    public void push(AdtStack stack, int elem)
+    public void push(int elem)
     {
-        _stack.insert(_stack, 1, elem);
+        _stack.insert(1, elem);
     }
 
     /**
      * Entfernt das oberste Element vom Stack
      * Wenn der Stack leer ist, wird nichts gemacht
      * 
-     * @param AdtStack stack -> wird ignoriert
      */
     @Override
-    public void pop(AdtStack stack)
+    public void pop()
     {
-        if(_stack.laenge(_stack) != 0) {
-            _stack.delete(_stack, 1);
+        if(_stack.laenge() != 0) {
+            _stack.delete(1);
         }
     }
 
     /**
      * Liefert das oberste Element vom Stack
      * 
-     * @param AdtStack stack -> wird ignoriert
      * @return int, das Element
      */
     @Override
-    public int top(AdtStack stack)
+    public int top()
     {
-        if(!_stack.isEmpty(_stack)) {
-            return _stack.retrieve(_stack, 1);
+        if(!_stack.isEmpty()) {
+            return _stack.retrieve(1);
         }
-        return _stack.retrieve(_stack, 0);
+        return _stack.retrieve(0);
     }
 
     /**
      * Prueft ob der Stack leer ist
      * 
-     * @param AdtStack stack -> wird ignoriert
      * @return boolean, ob Stack leer
      */
     @Override
-    public boolean isEmptyS(AdtStack stack)
+    public boolean isEmptyS()
     {
-        return _stack.isEmpty(_stack);
+        return _stack.isEmpty();
     }
     
     @Override

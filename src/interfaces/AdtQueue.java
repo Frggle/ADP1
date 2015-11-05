@@ -7,11 +7,11 @@ public interface AdtQueue
         return null;
     }
     
-    public void enqueue(AdtQueue queue, int elem);
+    public void enqueue(int elem);
     
-    public void dequeue(AdtQueue queue);
+    public void dequeue();
     
-    public int front(AdtQueue queue);
+    public int front();
     
-    public boolean isEmptyQ(AdtQueue queue);
+    public boolean isEmptyQ();
 }

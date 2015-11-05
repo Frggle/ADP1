@@ -22,7 +22,7 @@ public class AdtStackTest
     @Test
     public void testIsEmptySTrue()
     {
-        assertTrue(_stack.isEmptyS(_stack));
+        assertTrue(_stack.isEmptyS());
     }
     
     /**
@@ -31,8 +31,8 @@ public class AdtStackTest
     @Test
     public void testIsEmptySNegative()
     {
-        _stack.push(_stack, 10);
-        assertFalse(_stack.isEmptyS(_stack));
+        _stack.push(10);
+        assertFalse(_stack.isEmptyS());
     }
     
     /**
@@ -41,9 +41,9 @@ public class AdtStackTest
     @Test
     public void testPushTrue()
     {
-        assertTrue(_stack.isEmptyS(_stack));
-        _stack.push(_stack, 10);
-        assertFalse(_stack.isEmptyS(_stack));
+        assertTrue(_stack.isEmptyS());
+        _stack.push(10);
+        assertFalse(_stack.isEmptyS());
     }
     
     /**
@@ -52,10 +52,10 @@ public class AdtStackTest
      */
     @Test
     public void testPopTrue() {
-        assertTrue(_stack.isEmptyS(_stack));
-        _stack.push(_stack, 10);
-        _stack.pop(_stack);
-        assertTrue(_stack.isEmptyS(_stack));
+        assertTrue(_stack.isEmptyS());
+        _stack.push(10);
+        _stack.pop();
+        assertTrue(_stack.isEmptyS());
     }
     
     /**
@@ -63,10 +63,10 @@ public class AdtStackTest
      */
     @Test
     public void testPopNegative() {
-        assertTrue(_stack.isEmptyS(_stack));
+        assertTrue(_stack.isEmptyS());
         AdtStack expected = _stack;
-        _stack.pop(_stack);
-        assertTrue(_stack.isEmptyS(_stack));
+        _stack.pop();
+        assertTrue(_stack.isEmptyS());
         assertEquals(expected, _stack);
     }
     
@@ -75,11 +75,20 @@ public class AdtStackTest
      */
     @Test
     public void testTopTrue() {
-        assertTrue(_stack.isEmptyS(_stack));
+        assertTrue(_stack.isEmptyS());
         int expected = 10;
-        _stack.push(_stack, expected);
-        int elem = _stack.top(_stack);
+        _stack.push(expected);
+        int elem = _stack.top();
         assertEquals(expected, elem);
+    }
+    
+    @Test
+    public void testTopTrue2() {
+        assertTrue(_stack.isEmptyS());
+        _stack.push(10);
+        _stack.push(20);
+        _stack.push(30);
+        assertEquals(30, _stack.top());
     }
     
     /**
@@ -87,7 +96,7 @@ public class AdtStackTest
      */
     @Test
     public void testTopNegative() {
-        assertTrue(_stack.isEmptyS(_stack));
-        assertEquals(-99999999, _stack.top(_stack));
+        assertTrue(_stack.isEmptyS());
+        assertEquals(-99999999, _stack.top());
     }
 }

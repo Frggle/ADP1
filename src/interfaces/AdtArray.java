@@ -6,9 +6,9 @@ public interface AdtArray
         return null;
     }
     
-    public void setA(AdtArray array, int pos, int elem);
+    public void setA(int pos, int elem);
     
-    public int getA(AdtArray array, int pos);
+    public int getA(int pos);
     
-    public int lengthA(AdtArray array);
+    public int lengthA();
 }

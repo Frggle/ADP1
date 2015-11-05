@@ -40,11 +40,10 @@ public class AdtListImpl implements AdtList
     /**
      * Prueft ob die Laenge des aufrufenden Objektes 0 ist
      * 
-     * @param AdtList list -> wird ignoriert
      * @return boolean, ob Liste leer
      */
     @Override
-    public boolean isEmpty(AdtList list)
+    public boolean isEmpty()
     {
         return (_laenge == 0 ? true : false);
     }
@@ -52,11 +51,10 @@ public class AdtListImpl implements AdtList
     /**
      * Gibt die Anzahl der Elemente aus der Liste zurueck
      * 
-     * @param AdtList list -> wird ignoriert
      * @return int, laenge der Liste
      */
     @Override
-    public int laenge(AdtList list)
+    public int laenge()
     {
         return _laenge;
     }
@@ -65,24 +63,28 @@ public class AdtListImpl implements AdtList
      * Fuegt ein neues Element an einer bestimmten Position (0 < pos <= Laenge + 1) ein
      * Wenn die Position ungueltig ist, wird das Element nicht hinzugefuegt
      * 
-     * @param AdtList list -> wird ignoriert
      * @param int pos
      * @param int elem
      */
     @Override
-    public void insert(AdtList list, int pos, int elem)
+    public void insert(int pos, int elem)
     {
-        if (pos <= list.laenge(list) + 1)
+        if (pos <= _laenge + 1)
         {
             // pruefen, ob max. Groesse von Array erreicht -> wenn ja
             // vergroessern und kopieren
-            if (list.laenge(list) == _array.length)
+            if (_laenge == _array.length)
             {                
                 int[] _tmpArray = new int[_array.length + 100];
                 System.arraycopy(_array, 0, _tmpArray, 0, _array.length - 1);
                 _array = _tmpArray;
             }
-            _array[list.laenge(list)] = elem;
+            if(_laenge != 0) {
+                for(int i = _laenge; i >= pos; i--) {
+                    _array[i] = _array[i - 1];
+                } 
+            }
+            _array[pos - 1] = elem;
             _laenge++;
         }
     }
@@ -91,18 +93,20 @@ public class AdtListImpl implements AdtList
      * Entfernt das Element an einer bestimmten Postion
      * Wenn die Position ungueltig ist, wird das Element nicht entfernt
      * 
-     * @param AdtList list -> wird ignoriert
      * @param int pos
      */
     @Override
-    public void delete(AdtList list, int pos)
+    public void delete(int pos)
     {
-        if (pos <= list.laenge(list))
+        if (pos < _laenge && pos > 0)
         {
-            for (int i = pos - 1; i <= list.laenge(list); i++)
+            for (int i = pos - 1; i < _laenge; i++)
             {
                 _array[i] = _array[i + 1];
             }
+            _laenge--;
+        } else if(pos == 1 && _laenge == 1){
+            _array[0] = 0;
             _laenge--;
         }
     }
@@ -111,14 +115,13 @@ public class AdtListImpl implements AdtList
      * Liefert die Position des ersten Vorkommens des Elements
      * Wenn das Element nicht enthalten ist, wird -1 als Fehler zurueckgegeben
      * 
-     * @param AdtList list -> wird ignoriert
      * @param int elem
      * @return int, Position des Elements
      */
     @Override
-    public int find(AdtList list, int elem)
+    public int find(int elem)
     {
-        for(int i = 0; i <= list.laenge(list); i++) 
+        for(int i = 0; i <= _laenge; i++) 
         {
             if (_array[i] == elem)
             {
@@ -132,14 +135,13 @@ public class AdtListImpl implements AdtList
      * Liefert das Element an der gegebenen Position (1..Laenge)
      * Wenn die Position ungueltig ist, wird -99999999 zurueckgegeben
      * 
-     * @param AdtList list -> wird ignoriert
      * @param int pos
      * @return int, das Element
      */
     @Override
-    public int retrieve(AdtList list, int pos)
+    public int retrieve(int pos)
     {
-        if(pos > list.laenge(list) || pos <= 0) {
+        if(pos > _laenge || pos <= 0) {
             return -99999999;
         }
         return _array[pos - 1];
@@ -148,18 +150,17 @@ public class AdtListImpl implements AdtList
     /**
      * Konkateniert die aufrufende Liste mit der 2. Parameter-Liste
      * 
-     * @param AdtList list1 -> wird ignoriert
      * @param AdtList list2
      * @return AdtList, die erste Liste
      */
     @Override
-    public AdtList concat(AdtList list1, AdtList list2)
+    public AdtList concat(AdtList list)
     {
-        for (int i = 0; i < list2.laenge(list2); i++)
+        for(int i = 1; i <= list.laenge(); i++)
         {
-            this.insert(list1, i + 1, list2.retrieve(list2, i + 1));
+            this.insert(_laenge + 1, list.retrieve(i));
         }
-        return list1;
+        return this;
     }
 
     @Override

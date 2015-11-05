@@ -7,11 +7,11 @@ public interface AdtStack
         return null;
     }
     
-    public void push(AdtStack stack, int elem);
+    public void push(int elem);
     
-    public void pop(AdtStack stack);
+    public void pop();
     
-    public int top(AdtStack stack);
+    public int top();
     
-    public boolean isEmptyS(AdtStack stack);
+    public boolean isEmptyS();
 }
